@@ -5,8 +5,13 @@ module.exports = defineConfig({
    env: {
       minhaConta:"http://lojaebac.ebaconline.art.br/minha-conta/",
     },
-    setupNodeEvents(on, config) {
-      // implement node event listeners here
+    reporter: 'mochawesome',
+    reporterOptions: {
+      reportDir: 'mochawesome-report',
+      reportFilename: "index.html",
+      overwrite: false,
+      html: true,
+      json: true
     },
   },
 });

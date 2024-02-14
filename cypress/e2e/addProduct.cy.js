@@ -9,7 +9,7 @@ const data = require ('../fixtures/data.json')
 describe ('Testes de validação usando cy.intercept', () =>{
 
   beforeEach(() => {
-    cy.visit (Cypress.env('carrinho'))
+    cy.visit (Cypress.env('minhaConta'))
     loginPage.login(login.email, login.senha)
   });
 

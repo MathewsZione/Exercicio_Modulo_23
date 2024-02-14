@@ -3,7 +3,7 @@ const login = require ('../fixtures/login.json')
 
 describe('Remover item do carrinho', () => {
     beforeEach(() => {
-        cy.visit('/minha-conta/')
+        cy.visit (Cypress.env('minhaConta'))
         loginPage.login(login.email, login.senha)
       });
 

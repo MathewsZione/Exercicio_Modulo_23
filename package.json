@@ -1,0 +1,18 @@
+{
+  "name": "exercicio_modulo_23",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^13.6.4"
+  },
+  "dependencies": {
+    "chai": "^5.1.0"
+  }
+}

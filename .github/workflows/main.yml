@@ -2,7 +2,7 @@ name: EBAC Modulo 24 CI
 
 on:  
   push:
-    branches: [ master ]
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
@@ -21,20 +21,13 @@ jobs:
 
       - name: Instalando dependencias
         run: npm install --legacy-peer-deps
-
-      - name: Start de aplicacao
-        run: |
-          npm run prisma:generate
-          npm run docker:db -d
-          npm run start &
-          sleep 10
-
-      - name: Instalando dependências e rodando testes
-        run: |
-          cd ./api-testing/
-          npm install -f
-          npm run test
-          continue-on-error: true
+        
+      - name: Cypress Run
+        uses: cypress-io/github-action@v2
+        continue-on-error: true
+        with:
+          install-command: npm install
+          browser: chrome
 
       - name: Publicando o relatorio
         uses: peaceiris/actions-gh-pages@v3

@@ -15,28 +15,26 @@ describe ('Testes de validação usando cy.intercept', () =>{
 
   it('Deve realizar pesquisa do produto com sucesso', () => {
     cy.intercept({
-        method: 'GET',
-        url: '/wp-admin/admin-ajax*',
-        query: {
-            term: 'jacket'
-        }
-    }, req => {
-        req.reply(
-            {
-                statusCode: 200,
-                body: `${req.query.callback}(
-                    ${JSON.stringify(
-                    data.autocompleteSearchData
-                )}
-                )`
-            }
+      method: 'GET',
+      url: '/wp-admin/admin-ajax*',
+      query: {
+        term: 'jacket'
+      }
+    }, (req) => {
+      req.reply({
+        statusCode: 200,
+        body: `${req.query.callback}(
+          ${JSON.stringify(data.autocompleteSearchData)}
+        )`
+      });
+    }).as('getJacket');
 
-        )
-    }),
-    clickSearch.searchMagnifier()
-    productSearchPage.search('jacket')
-    productSearchPage.productList.first().should('have.attr', 'title', 'Ingrid Running Jacket')
+    clickSearch.searchMagnifier();
+    productSearchPage.search('jacket');
+    cy.wait('@getJacket');
+    productSearchPage.productList.first().should('have.attr', 'title', 'Ingrid Running Jacket');
   });
+});
   
   it('Deve adicionar produto ao carrinho com sucesso', () =>{
 
@@ -78,4 +76,3 @@ describe ('Testes de validação usando cy.intercept', () =>{
 
     })
   })
-})

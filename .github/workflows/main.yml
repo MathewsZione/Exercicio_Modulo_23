@@ -1,4 +1,4 @@
-name: EBAC Modulo 24 CI
+name: EBAC Modulo 24 CI and Deploy
 
 on:  
   push:
@@ -16,7 +16,7 @@ jobs:
       - name: Setup de ambiente Node
         uses: actions/setup-node@v2
         with:
-          node-version: '18' # Versão compatível com Cypress
+          node-version: '18' 
 
       - name: Instalando dependências
         run: npm install --legacy-peer-deps
@@ -26,10 +26,39 @@ jobs:
         with:
           install-command: npm install --legacy-peer-deps
           browser: chrome
-          config-file: cypress.config.js # Especifica o novo arquivo de configuração
+          config-file: cypress.config.js 
 
       - name: Publicando o relatório
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./api-testing/index.html
+          publish_dir: ./mochawesome-report/index.html
+
+  deploy:
+    needs: test  
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    concurrency:
+      group: "pages"
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+        
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+        
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

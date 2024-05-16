@@ -15,9 +15,9 @@ jobs:
 
         
       - name: Setup de ambiente Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v2
         with:
-          node-version: 19.2
+          node-version: 18.0.0
 
       - name: Instalando dependencias
         run: npm install --legacy-peer-deps

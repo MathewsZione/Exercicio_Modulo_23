@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Checkout do repositorio
+      - name: Checkout do repositório
         uses: actions/checkout@v3
 
       - name: Setup de ambiente Node
@@ -23,11 +23,10 @@ jobs:
         
       - name: Cypress Run
         uses: cypress-io/github-action@v2
-        continue-on-error: true
         with:
           install-command: npm install --legacy-peer-deps
-          config-file: cypress.config.js # Especifica o novo arquivo de configuração
           browser: chrome
+          config-file: cypress.config.js # Especifica o novo arquivo de configuração
 
       - name: Publicando o relatório
         uses: peaceiris/actions-gh-pages@v3

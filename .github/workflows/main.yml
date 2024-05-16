@@ -13,23 +13,23 @@ jobs:
       - name: Checkout do repositorio
         uses: actions/checkout@v3
 
-        
       - name: Setup de ambiente Node
         uses: actions/setup-node@v2
         with:
-          node-version: 18.0.0
+          node-version: '18' # Versão compatível com Cypress
 
-      - name: Instalando dependencias
+      - name: Instalando dependências
         run: npm install --legacy-peer-deps
         
       - name: Cypress Run
         uses: cypress-io/github-action@v2
         continue-on-error: true
         with:
-          install-command: npm install
+          install-command: npm install --legacy-peer-deps
+          config-file: cypress.config.js # Especifica o novo arquivo de configuração
           browser: chrome
 
-      - name: Publicando o relatorio
+      - name: Publicando o relatório
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx cypress run --reporter mochawesome  --reporter-options reportDir=\"cypress/results\",overwrite=false,html=false,json=true && npx mochawesome-merge \"cypress/results/*.json\" > mochawesome.json  && npx marge mochawesome.json"
+    "test": "npx cypress run --reporter mochawesome  --reporter-options reportDir=\"cypress/results\",overwrite=false,html=false,json=true && npx mochawesome-merge \"cypress/results/*.json\" > mochawesome.json  && npx marge mochawesome.json",
+    "docker:build": "docker build -t ui-testing-patterns:latest .",
+    "docker:start": "docker run --rm --name meu-container ui-testing-patterns:latest"
   },
   "keywords": [],
   "author": "",

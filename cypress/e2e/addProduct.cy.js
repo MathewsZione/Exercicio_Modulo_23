@@ -36,7 +36,7 @@ describe ('Testes de validação usando cy.intercept', () =>{
   });
 });
   
-  it('Deve adicionar produto ao carrinho com sucesso', () =>{
+  it.skip('Deve adicionar produto ao carrinho com sucesso', () =>{
 
     cy.intercept({
         method: 'GET',

@@ -1,9 +1,9 @@
 {
   "name": "exercicio_modulo_23",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
+    "cy:dash": "npx cypress run --record --key ebb92c00-0954-4d73-bf36-1a7f60be5b67",
     "test": "npx cypress run --reporter mochawesome  --reporter-options reportDir=\"cypress/results\",overwrite=false,html=false,json=true && npx mochawesome-merge \"cypress/results/*.json\" > mochawesome.json  && npx marge mochawesome.json",
     "docker:build": "docker build -t ui-testing-patterns:latest .",
     "docker:start": "docker run --rm --name meu-container ui-testing-patterns:latest"
@@ -19,5 +19,6 @@
   },
   "dependencies": {
     "chai": "^5.1.0"
-  }
+  },
+  "description": ""
 }

@@ -1,6 +1,7 @@
 const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
+  projectId: "j23hna",
   e2e: {
    env: {
       minhaConta:"http://lojaebac.ebaconline.art.br/minha-conta/",
@@ -14,4 +15,5 @@ module.exports = defineConfig({
       json: false
     },
   },
+  
 });
